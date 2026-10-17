@@ -1,0 +1,489 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="utf-8">
+<title>Market Monitor — учебный стенд</title>
+<style>
+ body{font-family:Arial,Helvetica,sans-serif;margin:24px;color:#1a1a1a;background:#fafafa}
+ h1{font-size:20px;margin:0 0 4px}
+ .sub{color:#666;font-size:13px;margin-bottom:16px}
+ table{border-collapse:collapse;width:100%;background:#fff}
+ th,td{border:1px solid #e2e2e8;padding:6px 10px;font-size:13px;text-align:right}
+ th{background:#f0f0f5;text-align:center}
+ td.t,td.n,td.s{text-align:left}
+ .up{color:#1a7f4b}.down{color:#b3261e}
+ #spinner{padding:40px;text-align:center;color:#888}
+ #cookie{position:fixed;left:0;right:0;bottom:0;background:#222;color:#fff;padding:16px;
+         display:flex;gap:12px;align-items:center;justify-content:center;font-size:13px}
+ #cookie button{padding:8px 16px;border:0;border-radius:4px;cursor:pointer}
+ #more{margin:16px 0;padding:10px 18px;border:0;border-radius:4px;background:#3355cc;color:#fff;
+       font-size:14px;cursor:pointer}
+</style>
+</head>
+<body>
+
+
+<h1 data-testid="page-title">Market Monitor</h1>
+<div class="sub" data-testid="profile-line">профиль: <span id="profile">ecom</span> · вариант <span id="variant">24</span></div>
+
+
+<div id="app" data-testid="app">
+    <table data-testid="market-table">
+      <thead><tr><th>#</th><th>Тикер</th><th>Название</th><th>Сектор</th><th>Цена</th>
+      <th>24ч</th><th>Объём</th><th>Капитализация</th><th>Листинг</th></tr></thead>
+      <tbody>
+    <tr data-testid="asset-row" data-rank="1" data-sector="Смартфоны">
+      <td class="t" data-testid="rank">1</td>
+      <td class="t" data-testid="ticker">SKU-1001</td>
+      <td class="n" data-testid="name">SKU-1001 модель</td>
+      <td class="s" data-testid="sector">Смартфоны</td>
+      <td data-testid="price">437,79 ₽</td>
+      <td data-testid="change" class="up">+3.78%</td>
+      <td data-testid="volume">215.6M</td>
+      <td data-testid="mcap">19.36B</td>
+      <td data-testid="listed">11.12.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="2" data-sector="Ноутбуки">
+      <td class="t" data-testid="rank">2</td>
+      <td class="t" data-testid="ticker">SKU-1002</td>
+      <td class="n" data-testid="name">SKU-1002 модель</td>
+      <td class="s" data-testid="sector">Ноутбуки</td>
+      <td data-testid="price">119,90 ₽</td>
+      <td data-testid="change" class="up">+3.86%</td>
+      <td data-testid="volume">7.8M</td>
+      <td data-testid="mcap">435.7M</td>
+      <td data-testid="listed">10.04.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="3" data-sector="ТВ">
+      <td class="t" data-testid="rank">3</td>
+      <td class="t" data-testid="ticker">SKU-1003</td>
+      <td class="n" data-testid="name">SKU-1003 модель</td>
+      <td class="s" data-testid="sector">ТВ</td>
+      <td data-testid="price">293,67 ₽</td>
+      <td data-testid="change" class="up">+9.05%</td>
+      <td data-testid="volume">3.69B</td>
+      <td data-testid="mcap">225.04B</td>
+      <td data-testid="listed">08.06.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="4" data-sector="Бытовая техника">
+      <td class="t" data-testid="rank">4</td>
+      <td class="t" data-testid="ticker">SKU-1004</td>
+      <td class="n" data-testid="name">SKU-1004 модель</td>
+      <td class="s" data-testid="sector">Бытовая техника</td>
+      <td data-testid="price">359,11 ₽</td>
+      <td data-testid="change" class="up">+3.35%</td>
+      <td data-testid="volume">68.6M</td>
+      <td data-testid="mcap">1.70B</td>
+      <td data-testid="listed">16.09.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="5" data-sector="Аксессуары">
+      <td class="t" data-testid="rank">5</td>
+      <td class="t" data-testid="ticker">SKU-1005</td>
+      <td class="n" data-testid="name">SKU-1005 модель</td>
+      <td class="s" data-testid="sector">Аксессуары</td>
+      <td data-testid="price">616,22 ₽</td>
+      <td data-testid="change" class="down">−5.24%</td>
+      <td data-testid="volume">119.8M</td>
+      <td data-testid="mcap">12.90B</td>
+      <td data-testid="listed">14.06.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="6" data-sector="Аудио">
+      <td class="t" data-testid="rank">6</td>
+      <td class="t" data-testid="ticker">SKU-1006</td>
+      <td class="n" data-testid="name">SKU-1006 модель</td>
+      <td class="s" data-testid="sector">Аудио</td>
+      <td data-testid="price">464,99 ₽</td>
+      <td data-testid="change" class="down">−8.71%</td>
+      <td data-testid="volume">402.4M</td>
+      <td data-testid="mcap">43.99B</td>
+      <td data-testid="listed">12.11.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="7" data-sector="Смартфоны">
+      <td class="t" data-testid="rank">7</td>
+      <td class="t" data-testid="ticker">SKU-1007</td>
+      <td class="n" data-testid="name">SKU-1007 модель</td>
+      <td class="s" data-testid="sector">Смартфоны</td>
+      <td data-testid="price">205,43 ₽</td>
+      <td data-testid="change" class="up">+0.92%</td>
+      <td data-testid="volume">666.9K</td>
+      <td data-testid="mcap">46.6M</td>
+      <td data-testid="listed">19.06.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="8" data-sector="Ноутбуки">
+      <td class="t" data-testid="rank">8</td>
+      <td class="t" data-testid="ticker">SKU-1008</td>
+      <td class="n" data-testid="name">SKU-1008 модель</td>
+      <td class="s" data-testid="sector">Ноутбуки</td>
+      <td data-testid="price">n/a</td>
+      <td data-testid="change" class="up">+7.67%</td>
+      <td data-testid="volume">281.7M</td>
+      <td data-testid="mcap">8.27B</td>
+      <td data-testid="listed">16.06.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="9" data-sector="ТВ">
+      <td class="t" data-testid="rank">9</td>
+      <td class="t" data-testid="ticker">SKU-1009</td>
+      <td class="n" data-testid="name">SKU-1009 модель</td>
+      <td class="s" data-testid="sector">ТВ</td>
+      <td data-testid="price">561,31 ₽</td>
+      <td data-testid="change" class="down">−4.48%</td>
+      <td data-testid="volume">2.66B</td>
+      <td data-testid="mcap">73.78B</td>
+      <td data-testid="listed">14.03.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="10" data-sector="Бытовая техника">
+      <td class="t" data-testid="rank">10</td>
+      <td class="t" data-testid="ticker">SKU-1010</td>
+      <td class="n" data-testid="name">SKU-1010 модель</td>
+      <td class="s" data-testid="sector">Бытовая техника</td>
+      <td data-testid="price">876,75 ₽</td>
+      <td data-testid="change" class="down">−3.51%</td>
+      <td data-testid="volume">1.81B</td>
+      <td data-testid="mcap">190.39B</td>
+      <td data-testid="listed">20.01.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="11" data-sector="Аксессуары">
+      <td class="t" data-testid="rank">11</td>
+      <td class="t" data-testid="ticker">SKU-1011</td>
+      <td class="n" data-testid="name">SKU-1011 модель</td>
+      <td class="s" data-testid="sector">Аксессуары</td>
+      <td data-testid="price">483,86 ₽</td>
+      <td data-testid="change" class="down">−5.43%</td>
+      <td data-testid="volume">322.6M</td>
+      <td data-testid="mcap">19.71B</td>
+      <td data-testid="listed">16.05.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="12" data-sector="Аудио">
+      <td class="t" data-testid="rank">12</td>
+      <td class="t" data-testid="ticker">SKU-1012</td>
+      <td class="n" data-testid="name">SKU-1012 модель</td>
+      <td class="s" data-testid="sector">Аудио</td>
+      <td data-testid="price">582,63 ₽</td>
+      <td data-testid="change" class="down">−2.24%</td>
+      <td data-testid="volume">30.9M</td>
+      <td data-testid="mcap">1.73B</td>
+      <td data-testid="listed">13.05.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="13" data-sector="Смартфоны">
+      <td class="t" data-testid="rank">13</td>
+      <td class="t" data-testid="ticker">SKU-1013</td>
+      <td class="n" data-testid="name">SKU-1013 модель</td>
+      <td class="s" data-testid="sector">Смартфоны</td>
+      <td data-testid="price">573,07 ₽</td>
+      <td data-testid="change" class="down">−9.94%</td>
+      <td data-testid="volume">253.0M</td>
+      <td data-testid="mcap">2.54B</td>
+      <td data-testid="listed">18.07.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="14" data-sector="Ноутбуки">
+      <td class="t" data-testid="rank">14</td>
+      <td class="t" data-testid="ticker">SKU-1014</td>
+      <td class="n" data-testid="name">SKU-1014 модель</td>
+      <td class="s" data-testid="sector">Ноутбуки</td>
+      <td data-testid="price">755,18 ₽</td>
+      <td data-testid="change" class="up">—</td>
+      <td data-testid="volume">199.0M</td>
+      <td data-testid="mcap">16.48B</td>
+      <td data-testid="listed">14.03.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="15" data-sector="ТВ">
+      <td class="t" data-testid="rank">15</td>
+      <td class="t" data-testid="ticker">SKU-1015</td>
+      <td class="n" data-testid="name">SKU-1015 модель</td>
+      <td class="s" data-testid="sector">ТВ</td>
+      <td data-testid="price">528,95 ₽</td>
+      <td data-testid="change" class="down">−2.01%</td>
+      <td data-testid="volume">338.2M</td>
+      <td data-testid="mcap">25.20B</td>
+      <td data-testid="listed">10.07.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="16" data-sector="Бытовая техника">
+      <td class="t" data-testid="rank">16</td>
+      <td class="t" data-testid="ticker">SKU-1016</td>
+      <td class="n" data-testid="name">SKU-1016 модель</td>
+      <td class="s" data-testid="sector">Бытовая техника</td>
+      <td data-testid="price">194,39 ₽</td>
+      <td data-testid="change" class="up">+5.63%</td>
+      <td data-testid="volume">3.38B</td>
+      <td data-testid="mcap">84.78B</td>
+      <td data-testid="listed">14.01.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="17" data-sector="Аксессуары">
+      <td class="t" data-testid="rank">17</td>
+      <td class="t" data-testid="ticker">SKU-1017</td>
+      <td class="n" data-testid="name">SKU-1017 модель</td>
+      <td class="s" data-testid="sector">Аксессуары</td>
+      <td data-testid="price">51,50 ₽</td>
+      <td data-testid="change" class="up">+10.37%</td>
+      <td data-testid="volume">42.7M</td>
+      <td data-testid="mcap">4.04B</td>
+      <td data-testid="listed">10.12.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="18" data-sector="Аудио">
+      <td class="t" data-testid="rank">18</td>
+      <td class="t" data-testid="ticker">SKU-1018</td>
+      <td class="n" data-testid="name">SKU-1018 модель</td>
+      <td class="s" data-testid="sector">Аудио</td>
+      <td data-testid="price">400,27 ₽</td>
+      <td data-testid="change" class="down">−3.77%</td>
+      <td data-testid="volume">850.5M</td>
+      <td data-testid="mcap">70.52B</td>
+      <td data-testid="listed">05.08.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="19" data-sector="Смартфоны">
+      <td class="t" data-testid="rank">19</td>
+      <td class="t" data-testid="ticker">SKU-1019</td>
+      <td class="n" data-testid="name">SKU-1019 модель</td>
+      <td class="s" data-testid="sector">Смартфоны</td>
+      <td data-testid="price">640,71 ₽</td>
+      <td data-testid="change" class="down">−4.81%</td>
+      <td data-testid="volume">273.2M</td>
+      <td data-testid="mcap">8.24B</td>
+      <td data-testid="listed">08.05.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="20" data-sector="Ноутбуки">
+      <td class="t" data-testid="rank">20</td>
+      <td class="t" data-testid="ticker">SKU-1020</td>
+      <td class="n" data-testid="name">SKU-1020 модель</td>
+      <td class="s" data-testid="sector">Ноутбуки</td>
+      <td data-testid="price">172,81 ₽</td>
+      <td data-testid="change" class="down">−8.73%</td>
+      <td data-testid="volume">3.87B</td>
+      <td data-testid="mcap">372.82B</td>
+      <td data-testid="listed">03.08.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="21" data-sector="ТВ">
+      <td class="t" data-testid="rank">21</td>
+      <td class="t" data-testid="ticker">SKU-1021</td>
+      <td class="n" data-testid="name">SKU-1021 модель</td>
+      <td class="s" data-testid="sector">ТВ</td>
+      <td data-testid="price">196,59 ₽</td>
+      <td data-testid="change" class="down">−7.54%</td>
+      <td data-testid="volume">1.21B</td>
+      <td data-testid="mcap">98.47B</td>
+      <td data-testid="listed">24.08.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="22" data-sector="Бытовая техника">
+      <td class="t" data-testid="rank">22</td>
+      <td class="t" data-testid="ticker">SKU-1022</td>
+      <td class="n" data-testid="name">SKU-1022 модель</td>
+      <td class="s" data-testid="sector">Бытовая техника</td>
+      <td data-testid="price">112,03 ₽</td>
+      <td data-testid="change" class="up">+6.76%</td>
+      <td data-testid="volume">1.96B</td>
+      <td data-testid="mcap">49.55B</td>
+      <td data-testid="listed">27.09.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="23" data-sector="Аксессуары">
+      <td class="t" data-testid="rank">23</td>
+      <td class="t" data-testid="ticker">SKU-1023</td>
+      <td class="n" data-testid="name">SKU-1023 модель</td>
+      <td class="s" data-testid="sector">Аксессуары</td>
+      <td data-testid="price">219,13 ₽</td>
+      <td data-testid="change" class="down">−5.82%</td>
+      <td data-testid="volume">1.23B</td>
+      <td data-testid="mcap">108.25B</td>
+      <td data-testid="listed">21.03.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="24" data-sector="Аудио">
+      <td class="t" data-testid="rank">24</td>
+      <td class="t" data-testid="ticker">SKU-1024</td>
+      <td class="n" data-testid="name">SKU-1024 модель</td>
+      <td class="s" data-testid="sector">Аудио</td>
+      <td data-testid="price">817,91 ₽</td>
+      <td data-testid="change" class="up">+10.70%</td>
+      <td data-testid="volume">1.16B</td>
+      <td data-testid="mcap">81.18B</td>
+      <td data-testid="listed">14.06.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="25" data-sector="Смартфоны">
+      <td class="t" data-testid="rank">25</td>
+      <td class="t" data-testid="ticker">SKU-1025</td>
+      <td class="n" data-testid="name">SKU-1025 модель</td>
+      <td class="s" data-testid="sector">Смартфоны</td>
+      <td data-testid="price">408,35 ₽</td>
+      <td data-testid="change" class="down">−7.67%</td>
+      <td data-testid="volume">2.5M</td>
+      <td data-testid="mcap">26.1M</td>
+      <td data-testid="listed">17.11.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="26" data-sector="Ноутбуки">
+      <td class="t" data-testid="rank">26</td>
+      <td class="t" data-testid="ticker">SKU-1026</td>
+      <td class="n" data-testid="name">SKU-1026 модель</td>
+      <td class="s" data-testid="sector">Ноутбуки</td>
+      <td data-testid="price">190,45 ₽</td>
+      <td data-testid="change" class="down">−4.92%</td>
+      <td data-testid="volume">85.3M</td>
+      <td data-testid="mcap">5.95B</td>
+      <td data-testid="listed">10.09.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="27" data-sector="ТВ">
+      <td class="t" data-testid="rank">27</td>
+      <td class="t" data-testid="ticker">SKU-1027</td>
+      <td class="n" data-testid="name">SKU-1027 модель</td>
+      <td class="s" data-testid="sector">ТВ</td>
+      <td data-testid="price">464,23 ₽</td>
+      <td data-testid="change" class="up">+2.93%</td>
+      <td data-testid="volume">743.5M</td>
+      <td data-testid="mcap">35.77B</td>
+      <td data-testid="listed">02.04.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="28" data-sector="Бытовая техника">
+      <td class="t" data-testid="rank">28</td>
+      <td class="t" data-testid="ticker">SKU-1028</td>
+      <td class="n" data-testid="name">SKU-1028 модель</td>
+      <td class="s" data-testid="sector">Бытовая техника</td>
+      <td data-testid="price">629,67 ₽</td>
+      <td data-testid="change" class="down">−0.10%</td>
+      <td data-testid="volume">107.2M</td>
+      <td data-testid="mcap">11.30B</td>
+      <td data-testid="listed">04.12.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="29" data-sector="Аксессуары">
+      <td class="t" data-testid="rank">29</td>
+      <td class="t" data-testid="ticker">SKU-1029</td>
+      <td class="n" data-testid="name">SKU-1029 модель</td>
+      <td class="s" data-testid="sector">Аксессуары</td>
+      <td data-testid="price">86,77 ₽</td>
+      <td data-testid="change" class="down">−6.02%</td>
+      <td data-testid="volume">2.02B</td>
+      <td data-testid="mcap">83.81B</td>
+      <td data-testid="listed">23.02.2021</td>
+    </tr>
+    <tr data-testid="asset-row" data-rank="30" data-sector="Аудио">
+      <td class="t" data-testid="rank">30</td>
+      <td class="t" data-testid="ticker">SKU-1030</td>
+      <td class="n" data-testid="name">SKU-1030 модель</td>
+      <td class="s" data-testid="sector">Аудио</td>
+      <td data-testid="price">35,55 ₽</td>
+      <td data-testid="change" class="down">−6.83%</td>
+      <td data-testid="volume">247.1M</td>
+      <td data-testid="mcap">4.08B</td>
+      <td data-testid="listed">15.01.2021</td>
+    </tr></tbody></table></div>
+<button id="more" data-testid="load-more" style="display: none;">Показать ещё</button>
+<div id="status" data-testid="status">Показано 30 из 30</div>
+
+<script>
+// ------- параметры стенда: профиль и вариант приходят в query-строке -----------------
+const qs = new URLSearchParams(location.search);
+const VARIANT = parseInt(qs.get("variant") || "30", 10);
+const PROFILE = qs.get("profile") || "crypto";
+const DELAY = parseInt(qs.get("delay") || "1200", 10);   // задержка «гидратации»
+const PAGE_SIZE = 12, TOTAL = 30;
+
+// ------- детерминированный генератор: у каждого варианта свои числа -------------------
+function rng(seed){ let s = seed * 9301 + 49297; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; }
+const rnd = rng(VARIANT * 7 + PROFILE.length);
+
+const NAMES = {
+  crypto:   ["BTC","ETH","SOL","TON","XRP","ADA","AVAX","DOT","LINK","MATIC","ATOM","NEAR","APT","ARB","OP",
+             "FIL","ICP","IMX","INJ","SUI","AAVE","GRT","RUNE","SAND","EGLD","FTM","ALGO","HBAR","VET","THETA"],
+  stocks:   ["SBER","GAZP","LKOH","GMKN","YNDX","ROSN","NVTK","TATN","MGNT","MTSS","PLZL","ALRS","CHMF","NLMK","PHOR",
+             "AFLT","VTBR","RUAL","SNGS","IRAO","FEES","HYDR","MOEX","POLY","TRNF","UPRO","OZON","FIVE","SMLT","AGRO"],
+  metals:   ["Li","Co","Ni","Cu","Al","Zn","Pb","Sn","W","Mo","Ti","V","Mn","Cr","Si","Mg","REE-Nd","REE-Pr","Pd","Pt",
+             "Au","Ag","U","Ga","Ge","In","Ta","Nb","Bi","Sb"],
+  ecom:     ["SKU-1001","SKU-1002","SKU-1003","SKU-1004","SKU-1005","SKU-1006","SKU-1007","SKU-1008","SKU-1009","SKU-1010",
+             "SKU-1011","SKU-1012","SKU-1013","SKU-1014","SKU-1015","SKU-1016","SKU-1017","SKU-1018","SKU-1019","SKU-1020",
+             "SKU-1021","SKU-1022","SKU-1023","SKU-1024","SKU-1025","SKU-1026","SKU-1027","SKU-1028","SKU-1029","SKU-1030"],
+  startups: ["Arvo","Brixel","Corvus","Dalta","Elmyr","Fenra","Glide","Hexon","Ionis","Juno","Karbo","Lumen","Mirex",
+             "Nuvo","Orbis","Prisma","Qubit","Ravel","Sygma","Terra","Ultis","Vento","Wexa","Xenia","Yotta","Zephy",
+             "Astra","Borea","Ceres","Dione"],
+};
+const SECTORS = {
+  crypto:   ["L1","L2","DeFi","Infra","GameFi","Stablecoin"],
+  stocks:   ["Финансы","Нефть и газ","Металлургия","Ритейл","Технологии","Энергетика"],
+  metals:   ["Аккумуляторные","Базовые","Редкоземельные","Драгоценные","Легирующие","Ядерные"],
+  ecom:     ["Смартфоны","Ноутбуки","ТВ","Бытовая техника","Аксессуары","Аудио"],
+  startups: ["FinTech","HealthTech","EdTech","LogTech","AgroTech","RetailTech"],
+};
+const CUR = {crypto:"$", stocks:"₽", metals:"$", ecom:"₽", startups:"$"};
+
+function fmtMoney(x, cur){
+  if (cur === "₽"){ return x.toLocaleString("ru-RU", {minimumFractionDigits:2, maximumFractionDigits:2}) + " ₽"; }
+  return "$" + x.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function fmtSuffix(x){
+  if (x >= 1e9) return (x/1e9).toFixed(2) + "B";
+  if (x >= 1e6) return (x/1e6).toFixed(1) + "M";
+  if (x >= 1e3) return (x/1e3).toFixed(1) + "K";
+  return x.toFixed(0);
+}
+function fmtPct(p){
+  const sign = p >= 0 ? "+" : "\u2212";                  // намеренно Unicode-минус
+  return sign + Math.abs(p).toFixed(2).replace(".", (VARIANT % 2 ? "," : ".")) + "%";
+}
+
+const names = NAMES[PROFILE] || NAMES.crypto;
+const sectors = SECTORS[PROFILE] || SECTORS.crypto;
+const cur = CUR[PROFILE] || "$";
+const DATA = [];
+for (let i = 0; i < TOTAL; i++){
+  const price = Math.round((0.5 + rnd() * 900) * 100) / 100;
+  const vol = Math.round(1e4 + rnd() ** 3 * 4e9);
+  const mcap = Math.round(vol * (3 + rnd() * 120));
+  const chg = Math.round((rnd() * 24 - 10) * 100) / 100;
+  const date = new Date(2021, Math.floor(rnd() * 12), 1 + Math.floor(rnd() * 27));
+  DATA.push({
+    rank: i + 1,
+    ticker: names[i % names.length],
+    name: names[i % names.length] + " " + (PROFILE === "ecom" ? "модель" : "Asset"),
+    sector: sectors[i % sectors.length],
+    price: (i === 7) ? "n/a" : fmtMoney(price, cur),          // «грязное» значение
+    change: (i === 13) ? "—" : fmtPct(chg),                   // пропуск
+    volume: fmtSuffix(vol),
+    mcap: fmtSuffix(mcap),
+    listed: date.toLocaleDateString("ru-RU"),
+    price_num: (i === 7) ? null : price,
+    chg_num: (i === 13) ? null : chg / 100,
+    vol_num: vol, mcap_num: mcap,
+  });
+}
+window.__MARKET__ = DATA;                                     // запасной канал для офлайн-режима
+
+let shown = 0;
+function render(){
+  const rows = DATA.slice(0, shown).map(d => `
+    <tr data-testid="asset-row" data-rank="${d.rank}" data-sector="${d.sector}">
+      <td class="t" data-testid="rank">${d.rank}</td>
+      <td class="t" data-testid="ticker">${d.ticker}</td>
+      <td class="n" data-testid="name">${d.name}</td>
+      <td class="s" data-testid="sector">${d.sector}</td>
+      <td data-testid="price">${d.price}</td>
+      <td data-testid="change" class="${d.chg_num >= 0 ? "up" : "down"}">${d.change}</td>
+      <td data-testid="volume">${d.volume}</td>
+      <td data-testid="mcap">${d.mcap}</td>
+      <td data-testid="listed">${d.listed}</td>
+    </tr>`).join("");
+  document.getElementById("app").innerHTML = `
+    <table data-testid="market-table">
+      <thead><tr><th>#</th><th>Тикер</th><th>Название</th><th>Сектор</th><th>Цена</th>
+      <th>24ч</th><th>Объём</th><th>Капитализация</th><th>Листинг</th></tr></thead>
+      <tbody>${rows}</tbody></table>`;
+  document.getElementById("status").textContent = `Показано ${shown} из ${TOTAL}`;
+  document.getElementById("more").style.display = shown < TOTAL ? "inline-block" : "none";
+}
+
+function boot(){
+  document.getElementById("profile").textContent = PROFILE;
+  document.getElementById("variant").textContent = VARIANT;
+  document.getElementById("spinner").remove();
+  shown = PAGE_SIZE;
+  render();
+}
+setTimeout(boot, DELAY);                                      // «гидратация» с задержкой
+
+document.getElementById("more").addEventListener("click", () => {
+  const btn = document.getElementById("more");
+  btn.disabled = true; btn.textContent = "Загрузка…";
+  setTimeout(() => {                                          // подгрузка тоже не мгновенная
+    shown = Math.min(shown + PAGE_SIZE, TOTAL);
+    render();
+    btn.disabled = false; btn.textContent = "Показать ещё";
+  }, 700);
+});
+document.getElementById("accept").addEventListener("click", () => document.getElementById("cookie").remove());
+document.getElementById("reject").addEventListener("click", () => document.getElementById("cookie").remove());
+</script>
+
+
+</body></html>
