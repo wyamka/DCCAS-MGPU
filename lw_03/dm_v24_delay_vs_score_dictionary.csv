@@ -1,0 +1,8 @@
+поле,тип в pandas,тип в DataLens,пример
+order_id,object,Строка,e481f51cbdc54678b7cc49136f2d6af7
+month,object,Дата,2017-10-01
+region,object,Строка,Юго-Восток
+delay_days,float64,Дробное число,-8.0
+delay_group,object,Строка,Доставлено вовремя
+delivery_status,object,Строка,Вовремя
+review_score,int64,Целое число,4
