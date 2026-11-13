@@ -97,13 +97,13 @@ WHERE order_status = 'delivered'
 | 4 | Линейная диаграмма | Оценка по месяцам |
 | 5 | Комбинированная диаграмма | Объём и «одна звезда» |
 
-![Дашборд](img/dasbord.png)
-![Датасет](ing/dataset.png)
-│[Чарт1(Идентификатор)](ing/chart1.png)
-│[Чарт2](ing/chart2.png)
-│[Чарт3](ing/chart3.png)
-│[Чарт4](ing/chart4.png)
-│[Чарт5](ing/chart5.png)
+![Дашборд](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/dashboard.png)
+![Датасет](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/dataset.png)
+│[Чарт1(Идентификатор)](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/chart1.png)
+│[Чарт2](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/chart2.png)
+│[Чарт3](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/chart3.png)
+│[Чарт4](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/chart4.png)
+│[Чарт5](https://raw.githubusercontent.com/wyamka/DCCAS-MGPU/main/lw_03/img/chart5.png)
 
 
 
